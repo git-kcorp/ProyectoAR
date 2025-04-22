@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "nombre": "Joaco",
+        "apellido":"Peluffo",
+        "nacimiento": "2003-10-09",
+        "cedula":53518848
+    },
+    {
+        "id":141,
+        "nombre":"Maxi",
+        "apellido":"Roytman",
+        "nacimiento":"1997-05-17",
+        "cedula":54582971
+    }
+]
