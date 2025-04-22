@@ -8,11 +8,12 @@ interface Cliente {
 }
 
 function CardEtapaUno() {
+    const fecha = new Date();
 
     const [form, setForm] = useState({
-        fecha: '',
+        fecha: `${fecha.getFullYear()}-${fecha.getMonth()}-${fecha.getDate()}`,
         cliente: '',
-        hora: ''
+        hora : fecha.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', hour12: false })
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +34,7 @@ function CardEtapaUno() {
         <Container maxWidth="sm" sx={{ mt: 4 }}>
             <Box
                 sx={{
-                    background: 'linear-gradient(to right,rgb(41, 40, 40),rgb(4, 2, 0))',
+                    background: 'linear-gradient(to right,rgb(255, 255, 255),rgb(76, 76, 76))',
                     padding: 4,
                     borderRadius: 3,
                     boxShadow: 3,

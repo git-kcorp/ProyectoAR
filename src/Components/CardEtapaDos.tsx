@@ -39,14 +39,32 @@ function CardEtapaDos() {
     }
 
     const handleCedula = (e: any) => {
-        const paciente = (pacientes as Paciente[]).find((o) => o.cedula === Number(e.target.value));
-        if (paciente) {
-            const edad = calcularEdad(new Date(paciente.nacimiento));
+        try {
+            const paciente = (pacientes as Paciente[]).find((o) => o.cedula === Number(e.target.value));
+            if (paciente) {
+                const edad = calcularEdad(new Date(paciente.nacimiento));
+                setForm({
+                    cedula: paciente.cedula,
+                    nombre: paciente.nombre,
+                    apellido: paciente.apellido,
+                    edad: edad,
+                    internado: false
+                })
+            } else {
+                setForm({
+                    cedula: e.target.value,
+                    nombre: '',
+                    apellido: '',
+                    edad: 0,
+                    internado: false
+                })
+            }
+        } catch {
             setForm({
-                cedula: paciente.cedula,
-                nombre: paciente.nombre,
-                apellido: paciente.apellido,
-                edad: edad,
+                cedula: e.target.value,
+                nombre: '',
+                apellido: '',
+                edad: 0,
                 internado: false
             })
         }
@@ -70,7 +88,7 @@ function CardEtapaDos() {
             </Typography>
             <Box
                 sx={{
-                    background: 'linear-gradient(to right,rgb(41, 40, 40),rgb(4, 2, 0))',
+                    background: 'linear-gradient(to right,rgb(255, 255, 255),rgb(76, 76, 76))',
                     padding: 4,
                     borderRadius: 3,
                     boxShadow: 3,

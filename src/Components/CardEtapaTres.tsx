@@ -26,22 +26,31 @@ function CardEtapaTres() {
     });
 
     const handleCodigo = (e: any) => {
-        const analisisO = (analisis as Analisis[]).find((a) => a.ANALISIS === Number(e.target.value));
-        if (analisis) {
+        try {
+            const analisisO = (analisis as Analisis[]).find((a) => a.ANALISIS === Number(e.target.value));
+            if (analisis) {
+                setForm({
+                    ANALISIS: analisisO!.ANALISIS,
+                    NOMBRE: analisisO!.NOMBRE,
+                    TECNICA: analisisO!.TECNICA,
+                    RANGO: analisisO!.RANGO,
+                })
+            }
+        } catch {
             setForm({
-                ANALISIS: analisisO!.ANALISIS,
-                NOMBRE: analisisO!.NOMBRE,
-                TECNICA: analisisO!.TECNICA,
-                RANGO: analisisO!.RANGO,
+                ANALISIS: e.target.value,
+                NOMBRE: '',
+                TECNICA: '',
+                RANGO: '',
             })
         }
+
     }
 
     const handleChange = (e: any) => {
-        console.log("hi")
         setForm({ ...form, [e.target.name]: e.target.value });
     };
-    
+
 
     const handleSave = () => {
         console.log("Data saved:", form);
@@ -53,7 +62,7 @@ function CardEtapaTres() {
             </Typography>
             <Box
                 sx={{
-                    background: 'linear-gradient(to right,rgb(41, 40, 40),rgb(4, 2, 0))',
+                    background: 'linear-gradient(to right,rgb(255, 255, 255),rgb(76, 76, 76))',
                     padding: 4,
                     borderRadius: 3,
                     boxShadow: 3,
@@ -64,7 +73,7 @@ function CardEtapaTres() {
                         fullWidth
                         margin="normal"
                         label="Codigo Analisis"
-                        name="codigo_analisis"
+                        name="ANALISIS"
                         value={form.ANALISIS}
                         onChange={(e) => {
                             handleChange(e);
@@ -75,7 +84,7 @@ function CardEtapaTres() {
                         fullWidth
                         margin="normal"
                         label="Nombre"
-                        name="nombre"
+                        name="NOMBRE"
                         value={form.NOMBRE}
                         onChange={handleChange}
                     />
@@ -83,7 +92,7 @@ function CardEtapaTres() {
                         fullWidth
                         margin="normal"
                         label="Tecnica"
-                        name="tecnica"
+                        name="TECNICA"
                         value={form.TECNICA}
                         onChange={handleChange}
                     />
@@ -91,7 +100,7 @@ function CardEtapaTres() {
                         fullWidth
                         margin="normal"
                         label="Rango"
-                        name="rango"
+                        name="RANGO"
                         value={form.RANGO}
                         onChange={handleChange}
                     />
