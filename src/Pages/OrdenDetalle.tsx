@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import ordenes from '../Data/Ordenes.json';
+import ordenes from "../Data/ordenes.json";
 import { useState } from "react";
 import { Box, Container, TextField, Typography } from "@mui/material";
 
@@ -47,7 +47,7 @@ function OrdenDetalle() {
                     background: 'linear-gradient(to right,rgb(41, 40, 40),rgb(4, 2, 0))',
                     padding: 4,
                     borderRadius: 3,
-                    boxShadow: 3,  // Sombra suave
+                    boxShadow: 3,
                 }}
             >
                 <form>

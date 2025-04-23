@@ -1,4 +1,4 @@
-import DataTable from "../Components/DataTable";
+import DataTable from "../Components/Reutilizables/DataTable";
 
 
 function Home() {

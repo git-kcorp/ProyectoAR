@@ -1,5 +1,5 @@
 import { Box, Button, Container, MenuItem, Select, TextField } from "@mui/material";
-import clientesData from '../Data/clientes.json';
+import clientesData from '../../Data/clientes.json';
 import { useEffect, useState } from "react";
 
 interface Cliente {

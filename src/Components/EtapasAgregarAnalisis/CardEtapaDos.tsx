@@ -7,7 +7,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import pacientesData from "../Data/pacientes.json";
+import pacientesData from "../../Data/pacientes.json";
 
 import { useEffect, useState } from "react";
 

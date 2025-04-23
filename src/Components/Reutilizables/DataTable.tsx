@@ -1,6 +1,7 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import ordenes from '../Data/Ordenes.json';
+import ordenes from '../../Data/Ordenes.json';
+
 interface Orden {
   id: number;
   fecha: string;

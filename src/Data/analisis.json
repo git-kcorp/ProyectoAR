@@ -4,5 +4,11 @@
         "NOMBRE": "TACROLIMO",
         "TECNICA": "QL",
         "RANGO": "5 a 15 ng/ml"
+    },
+    {
+        "ANALISIS":255,
+        "NOMBRE":"EVEROLIMUS",
+        "TECNICA":"HPLC",
+        "RANGO":"10 a 50 ng/ml"
     }
 ]
