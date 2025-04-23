@@ -1,9 +1,9 @@
-import { Box, Button, Container, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, TextField } from "@mui/material";
 import { useState } from "react";
 import MyDatePicker from "./MyDatePicker";
 import MyTimePicker from "./MyTimePicker";
 
-function CardEtapaCinco() {
+function CardEtapaCinco({ setHide, setShow }: any) {
     const [form, setForm] = useState({
         fecha_extraccion: null,
         hora_extraccion: null,
@@ -29,6 +29,8 @@ function CardEtapaCinco() {
 
     const handleSave = () => {
         console.log("Data saved:", form);
+        setHide(false);
+        setShow(true);
     }
 
     return (

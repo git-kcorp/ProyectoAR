@@ -7,7 +7,7 @@ interface Cliente {
     nombre: string
 }
 
-function CardEtapaUno() {
+function CardEtapaUno({ setHide, setShow }: any) {
     const fecha = new Date();
 
     const [form, setForm] = useState({
@@ -22,6 +22,8 @@ function CardEtapaUno() {
 
     const handleSave = () => {
         console.log("Data saved:", form);
+        setHide(false);
+        setShow(true);
     }
 
     const [clientes, setClientes] = useState<Cliente[]>([]);

@@ -4,7 +4,7 @@ import MyDatePicker from "./MyDatePicker";
 import dayjs from "dayjs";
 import MyTimePicker from "./MyTimePicker";
 
-function CardEtapaCuatro() {
+function CardEtapaCuatro({ setHide, setShow }: any) {
     const [form, setForm] = useState({
         dosis: '',
         unidad_dosis: '',
@@ -27,6 +27,8 @@ function CardEtapaCuatro() {
 
     const handleSave = () => {
         console.log("Data saved:", form);
+        setHide(false);
+        setShow(true);
     }
 
     return (

@@ -10,7 +10,7 @@ interface Analisis {
     RANGO: string
 }
 
-function CardEtapaTres() {
+function CardEtapaTres({ setHide, setShow }: any) {
 
     const [analisis, setAnalisis] = useState<Analisis[]>([]);
 
@@ -54,6 +54,8 @@ function CardEtapaTres() {
 
     const handleSave = () => {
         console.log("Data saved:", form);
+        setHide(false);
+        setShow(true);
     }
 
     return (
