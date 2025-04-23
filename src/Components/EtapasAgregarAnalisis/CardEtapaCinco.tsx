@@ -1,7 +1,7 @@
 import { Box, Button, Container, TextField } from "@mui/material";
 import { useState } from "react";
 import MyDatePicker from "../Reutilizables/MyDatePicker";
-import MyTimePicker from "../Reutilizables/MyTimePicker";
+import MyTimePicker from "../MyTimePicker";
 
 function CardEtapaCinco({ setEtapa }: any) {
   const [form, setForm] = useState({
@@ -29,6 +29,7 @@ function CardEtapaCinco({ setEtapa }: any) {
 
   const handleSave = () => {
     setEtapa({ form });
+
   };
 
   return (
@@ -80,11 +81,11 @@ function CardEtapaCinco({ setEtapa }: any) {
           />
           <Button
             variant="contained"
-            color="primary"
+            color="success"
             sx={{ mt: 2 }}
             onClick={handleSave}
           >
-            Guardar
+            Terminar
           </Button>
         </form>
       </Box>
