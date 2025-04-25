@@ -1,27 +1,56 @@
-import { Box, Button, Container, TextField } from "@mui/material";
+import { Box, Button, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, duration, TextField } from "@mui/material";
 import { useState } from "react";
 import MyDatePicker from "../Reutilizables/MyDatePicker";
-import MyTimePicker from "../MyTimePicker";
+import MyTimePicker from "../Reutilizables/MyTimePicker";
+import dayjs from "dayjs";
+import durationP from 'dayjs/plugin/duration';
 
-function CardEtapaCinco({ setEtapa }: any) {
+function CardEtapaCinco({ setEtapa, disabled }: any) {
+
+  const { disabledProps, setDisabledProps } = disabled;
+  const [diferenciaHoras, setDiferenciaHoras] = useState('');
+
+
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
   const [form, setForm] = useState({
-    fecha_extraccion: null,
-    hora_extraccion: null,
+    fecha_extraccion: dayjs(),
+    hora_extraccion: dayjs(),
     fecha_iniciado: null,
-    fecha_ultima_dosis: null,
-    hora_ultima_dosis: null,
+    fecha_ultima_dosis: dayjs().add(-1, "day"),
+    hora_ultima_dosis: dayjs().add(-12, "hour"),
     diferencia_horas: "",
   });
 
+  dayjs.extend(durationP);
+
+  const calculateDiffHours = (startDateTime: any, endDateTime: any) => {
+    const diffInMillis = endDateTime.diff(startDateTime);
+    const diffInHours = dayjs.duration(diffInMillis).hours();
+    const diffInMinutes = dayjs.duration(diffInMillis).minutes();
+    return `${diffInHours}:${diffInMinutes}`;
+  }
+
   const handleDateChange = (field: any) => (newValue: any) => {
-    setForm((prevForm) => ({
-      ...prevForm,
-      [field]: newValue,
-    }));
-    if (form.hora_extraccion && form.hora_ultima_dosis) {
-      console.log("Hay datos");
-    }
+    setForm((prevForm) => {
+      const updatedForm = { ...prevForm, [field]: newValue };
+
+      if (updatedForm.hora_extraccion && updatedForm.hora_ultima_dosis) {
+        updatedForm.diferencia_horas = calculateDiffHours(
+          updatedForm.fecha_ultima_dosis.hour(updatedForm.hora_ultima_dosis.hour()).minute(updatedForm.hora_ultima_dosis.minute()),
+
+          updatedForm.fecha_extraccion.hour(updatedForm.hora_extraccion.hour()).minute(updatedForm.hora_extraccion.minute())
+        );
+      }
+
+      return updatedForm;
+    });
   };
+
 
   const handleChange = (e: any) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,8 +58,18 @@ function CardEtapaCinco({ setEtapa }: any) {
 
   const handleSave = () => {
     setEtapa({ form });
-
+    setOpenDialog(false);
   };
+
+  const handleAddAnother = () => {
+    setEtapa({ form });
+    setOpenDialog(false);
+    setDisabledProps({
+      disabledET: false,
+      disabledEC: false,
+      disabledECI: false
+    })
+  }
 
   return (
     <Container maxWidth="sm" sx={{ mt: 4 }}>
@@ -83,12 +122,28 @@ function CardEtapaCinco({ setEtapa }: any) {
             variant="contained"
             color="success"
             sx={{ mt: 2 }}
-            onClick={handleSave}
+            onClick={() => setOpenDialog(true)}
           >
             Terminar
           </Button>
         </form>
       </Box>
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>¿Desea agregar otro análisis?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Puede continuar agregando otro análisis o finalizar aquí.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSave} color="secondary">
+            No
+          </Button>
+          <Button onClick={handleAddAnother} color="primary" autoFocus>
+            Sí
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CardEtapaSeis from "../Components/EtapasAgregarAnalisis/CardEtapaSeis";
-import CardEtapaDTCCI from "../Components/EtapasAgregarAnalisis/CardEtapaDosTresCuatroCinco";
+import CardEtapaTCCI from "../Components/EtapasAgregarAnalisis/CardEtapaTresCuatroCinco";
 import CardEtapaUno from "../Components/EtapasAgregarAnalisis/CardEtapaUno";
 
 function OrdenMonitoreo() {
@@ -18,7 +18,7 @@ function OrdenMonitoreo() {
   return (
     <div>
       {UVisible && <CardEtapaUno setHide={setUVisible} setShow={setCVisible} />}
-      {DTCCIVisible && <CardEtapaDTCCI analisisList={analisisList} setAnalisis={setAnalisis}/>}
+      {DTCCIVisible && <CardEtapaTCCI analisisList={analisisList} setAnalisis={setAnalisis}/>}
       {SVisible && <CardEtapaSeis setHide={setSVisible}/>}
     </div>
   );

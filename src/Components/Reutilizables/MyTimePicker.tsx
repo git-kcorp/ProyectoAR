@@ -1,13 +1,12 @@
 
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { LocalizationProvider } from '@mui/x-date-pickers';
+import { LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 
 function MyTimePicker({ label, value, onChange }) {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateTimePicker
+            <TimePicker
                 label={label}
                 value={value} 
                 onChange={onChange}

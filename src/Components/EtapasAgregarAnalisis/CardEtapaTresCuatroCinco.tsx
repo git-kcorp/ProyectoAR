@@ -9,6 +9,12 @@ function CardEtapaDTCCI({ analisisList, setAnalisis }: any) {
   const [etapaCuatro, setEtapaCuatro] = useState();
   const [etapaCinco, setEtapaCinco] = useState();
 
+  const [disabledProps, setDisabledProps] = useState({
+    disabledET: false,
+    disabledEC: false,
+    disabledECI: false
+  });
+
   const limpiarSet = () => {
     setEtapaTres(undefined);
     setEtapaCuatro(undefined);
@@ -32,13 +38,13 @@ function CardEtapaDTCCI({ analisisList, setAnalisis }: any) {
   return (
     <Grid container spacing={2}>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-        <CardEtapaTres setEtapa={setEtapaTres} />
+        <CardEtapaTres setEtapa={setEtapaTres} disabled={{ disabledProps, setDisabledProps }} />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-        <CardEtapaCuatro setEtapa={setEtapaCuatro} />
+        <CardEtapaCuatro setEtapa={setEtapaCuatro} disabled={{ disabledProps, setDisabledProps }} />
       </Grid>
       <Grid size={{ xs: 12, sm: 6, md: 3 }}>
-        <CardEtapaCinco setEtapa={setEtapaCinco} />
+        <CardEtapaCinco setEtapa={setEtapaCinco} disabled={{ disabledProps, setDisabledProps }} />
       </Grid>
     </Grid>
   );
