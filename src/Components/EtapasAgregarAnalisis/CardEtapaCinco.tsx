@@ -5,11 +5,9 @@ import MyTimePicker from "../Reutilizables/MyTimePicker";
 import dayjs from "dayjs";
 import durationP from 'dayjs/plugin/duration';
 
-function CardEtapaCinco({ setEtapa, disabled }: any) {
+function CardEtapaCinco({ setVisibleT,setVisibleCu,setVisibleCI,setEtapa, disabled }: any) {
 
   const { disabledProps, setDisabledProps } = disabled;
-  const [diferenciaHoras, setDiferenciaHoras] = useState('');
-
 
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -62,6 +60,8 @@ function CardEtapaCinco({ setEtapa, disabled }: any) {
   };
 
   const handleAddAnother = () => {
+    setVisibleT(true);
+    setVisibleCu(true);
     setEtapa({ form });
     setOpenDialog(false);
     setDisabledProps({

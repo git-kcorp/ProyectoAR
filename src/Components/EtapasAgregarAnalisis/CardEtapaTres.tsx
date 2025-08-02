@@ -10,10 +10,9 @@ interface Analisis {
   RANGO: string;
 }
 
-function CardEtapaTres({ setEtapa, disabled }: any) {
+function CardEtapaTres({ setVisible,setEtapa, disabled }: any) {
   const [analisis, setAnalisis] = useState<Analisis[]>([]);
   const { disabledProps, setDisabledProps } = disabled;
-
 
   useEffect(() => {
     setAnalisis(analisisData);
@@ -53,12 +52,23 @@ function CardEtapaTres({ setEtapa, disabled }: any) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const setClear = () => {
+    setForm({
+      ANALISIS:0,
+      NOMBRE: "",
+      TECNICA: "",
+      RANGO: "",
+    });
+  }
+
   useEffect(() => {
     if (form.ANALISIS && form.NOMBRE) {
       setEtapa({ form });
-      setDisabledProps({ ...disabledProps, disabledET: true })
+      setDisabledProps({ ...disabledProps, disabledET: true });
+      setClear();
+      setVisible(false);
     }
-  }, [form])
+  }, [form]);
 
   return (
     <fieldset disabled={disabledProps.disabledET}>
@@ -73,7 +83,6 @@ function CardEtapaTres({ setEtapa, disabled }: any) {
             boxShadow: 3,
           }}
         >
-
           <form>
             <TextField
               fullWidth

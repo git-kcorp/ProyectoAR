@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 
-function CardEtapaCuatro({ setEtapa, disabled }: any) {
+function CardEtapaCuatro({ setVisible,setEtapa, disabled }: any) {
   const [form, setForm] = useState({
     dosis: "",
     unidad_dosis: "",
@@ -32,6 +32,7 @@ function CardEtapaCuatro({ setEtapa, disabled }: any) {
     if (form.dosis && form.pico_valle) {
       setEtapa({ form });
       setDisabledProps({ ...disabledProps, disabledEC: true })
+      setVisible(false);
     }
   }, [form])
 
